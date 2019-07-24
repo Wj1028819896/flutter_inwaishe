@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/model/Goods.dart';
 
-export 'package:flutter_app/GoodsWidget.dart';
+export 'package:flutter_app/model/GoodsWidget.dart';
 export 'package:flutter_app/model/Goods.dart';
 
 class GoodsWidget extends StatefulWidget{

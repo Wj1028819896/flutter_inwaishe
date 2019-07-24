@@ -37,6 +37,7 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
         LogUtil.v(animation.value);
       });
     });
+
     animation.addStatusListener((AnimationStatus status){
         if(status == AnimationStatus.completed){
           //Navigator.pop(context);

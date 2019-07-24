@@ -3,8 +3,6 @@ export 'package:flutter_app/model/Goods.dart';
 ///數據實體（商品）
 class Goods{
 
-
-
   String goodsName;
   String goodsPic;
   String goodsPrice;
@@ -14,4 +12,5 @@ class Goods{
     this.goodsPic = goodsPic;
     this.goodsPrice = goodsPrice;
   }
+
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/GoodsWidget.dart';
+import 'package:flutter_app/model/GoodsWidget.dart';
 import 'package:common_utils/common_utils.dart';
 import 'package:flutter_app/page/splash/SplashPage.dart';
 
