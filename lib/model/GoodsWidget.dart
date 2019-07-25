@@ -34,8 +34,8 @@ class _GoodsWidget extends State<GoodsWidget> with TickerProviderStateMixin{
     controller.forward();
     return new FadeTransition(opacity: curve,child: new Flex(direction: Axis.vertical,crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          new Image.network(_data.goodsPic,width: 150,height: 150,fit: BoxFit.cover,),
-          new Text(_data.goodsName,style: TextStyle(color: Colors.brown,fontSize: 15),),
-          new Text('￥' + _data.goodsPrice,style: TextStyle(color: Colors.red,fontSize: 15),)]));
+          new Image.network(_data.goodsPic,width: 150,height: 150,fit: BoxFit.cover),
+          new Text(_data.goodsName,style: TextStyle(color: Colors.brown,fontSize: 15)),
+          new Text('￥' + _data.goodsPrice,style: TextStyle(color: Colors.red,fontSize: 15))]));
   }
 }

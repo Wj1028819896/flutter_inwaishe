@@ -33,7 +33,7 @@ class MultipleAdapter{
   }
 
   Widget onBindWidget(BuildContext context, int index,Object data){
-    if(mManagers.containsKey(data.runtimeType)){
+    if(mManagers.containsKey(data.runtimeType) && null != mManagers[data.runtimeType]){
       return mManagers[data.runtimeType].onBindWidget(context,index,data);
     }else {
       throw Exception("你尚未注册对应数据类型的 MultipleViewManager");
@@ -48,7 +48,5 @@ class MultipleAdapter{
 
 
 abstract class MultipleViewManager<T>{
-
   Widget onBindWidget(BuildContext context, int index,T data);
-
 }
