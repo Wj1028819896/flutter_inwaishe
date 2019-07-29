@@ -27,12 +27,67 @@ class CommonBanner extends StatefulWidget{
 }
 
 class _CommonBannerState extends State<CommonBanner>{
-  PageController pageController = new PageController(viewportFraction: 0.75, initialPage: 1);
+  PageController pageController;
+  TimerUtil timerUtil;
+  int crxPosition = -1;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    pageController = new PageController(viewportFraction: 0.75, initialPage: 1);
+    startTimer();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    stopTimer();
+  }
+
+  startTimer(){
+    stopTimer();
+    if(this.widget.isAuto){
+      if(timerUtil == null){
+        timerUtil = new TimerUtil(mInterval: this.widget.duration);
+        timerUtil.setOnTimerTickCallback((int ms){
+          if(ms > 1){
+            pageController.nextPage(duration: Duration(milliseconds: 300), curve: Curves.decelerate);
+          }
+        });
+      }
+      timerUtil.startTimer();
+    }
+  }
+
+  stopTimer(){
+    if(null != timerUtil && timerUtil.isActive()){
+      timerUtil.cancel();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return new PageView(
-      children: this.widget.pagers,
+    return new PageView.builder(
+      itemCount: this.widget.pagers.length,
+      itemBuilder: (BuildContext con,int index){
+        return new Listener(
+            child: this.widget.pagers[index]
+            ,onPointerDown: (event){
+              LogUtil.v("pd");
+              stopTimer();
+            } // 按下
+            ,onPointerUp: (event){
+              LogUtil.v("pu");
+              startTimer();
+            }  // 抬起
+            ,onPointerCancel: (event){
+              LogUtil.v("pc");
+              startTimer();
+            }); // 取消
+      },
       scrollDirection: Axis.horizontal,
     controller: pageController,
     onPageChanged: (index){
@@ -40,7 +95,9 @@ class _CommonBannerState extends State<CommonBanner>{
     });
   }
 
+
   void onPageChanged(int index){
+    crxPosition = index;
     LogUtil.v("banner->" + index.toString(),tag: this.widget.TAG);
     if(index == 0){
       pageController.animateToPage(this.widget.pagers.length - 2, duration: Duration(microseconds: 1), curve: Curves.linear);

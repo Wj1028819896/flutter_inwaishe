@@ -34,7 +34,7 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
     animation = Tween<double>(begin: 0.0, end: 1.0).animate(controller);
     animation.addListener((){
       setState(() {
-        LogUtil.v(animation.value);
+
       });
     });
 

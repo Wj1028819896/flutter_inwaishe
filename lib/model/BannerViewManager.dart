@@ -15,6 +15,6 @@ class BannerViewManager extends MultipleViewManager<BannerData>{
       pagers.add(new Container(margin: EdgeInsets.all(10),child: page));
     }
     return new ConstrainedBox(constraints: BoxConstraints(maxHeight: 250),
-        child: new CommonBanner(pagers, 1000, false));
+        child: new CommonBanner(pagers, 3000, true));
   }
 }
